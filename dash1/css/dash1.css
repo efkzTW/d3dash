@@ -1,4 +1,59 @@
 /* stylesheet for dash1.html template */
 body {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	margin: 0;
+	background-color: #f3f2ec;
+}
 
+#wrapper {
+	width: 940px;
+	min-height: 500px;
+	margin: 10px auto 0px;
+	background-color: #f2efda;
+}
+
+#top {
+	background-color: #cedfee;
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+	min-height: 250px;
+}
+
+#primary {
+	background-color: #000;
+	position: relative;
+	float: left;
+	width: 60%;
+	min-height: 250px;
+}
+
+#secondary {
+	background-color: #fff;
+	position: relative;
+	float: left;
+	width: 40%;
+	min-height: 250px;
+}
+
+#taiex-line {
+	background-color: #ebc3d9;
+	position: relative;
+	float: top;
+	width: 100%;
+	min-height: 125px;
+}
+
+#combo-line{
+	background-color: #b5e6bd;
+	position: relative;
+	float: top;
+	width: 100%;
+	min-height: 125px;
+}
+
+#bottom {
+	background-color: #edd6ca;
+	position: relative;
+	min-height: 250px;
 }

@@ -12,6 +12,16 @@ body {
 	background-color: #f2efda;
 }
 
+#header {
+	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+	font-size: 25px;
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+	min-height: 25px;
+	padding: 3px;
+}
+
 #top {
 	background-color: #cedfee;
 	position: relative;
@@ -26,6 +36,14 @@ body {
 	float: left;
 	width: 60%;
 	min-height: 250px;
+}
+
+#stb-bar {
+	background-color: #fff;
+	position: relative;
+	width: 500px;
+	height: 220px;
+	margin: 10px auto;
 }
 
 #secondary {

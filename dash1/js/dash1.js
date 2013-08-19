@@ -4,7 +4,7 @@ for (var i = 0; i < 20; i++) {
 	dataset.push(newNum);
 }
 
-var w = 525;
+var w = 450;
 var h = 200;
 var margin = 2;
 svg = d3.select("#stb-bar")
@@ -14,14 +14,18 @@ svg = d3.select("#stb-bar")
 			height: h
 		});
 
+var xScale = d3.scale.ordinal()
+			.domain(d3.range(dataset.length))
+			.rangeBands([0,w],0.2);
+
 svg.selectAll("rect")
 	.data(dataset)
 	.enter()
 	.append("rect")
 	.attr({
-		x: function(d,i) {return i * (w/dataset.length) + margin},
+		x: function(d,i) {return xScale(i)},
 		y: function(d) {return h - (h/100 * d)},
-		width: w/dataset.length - 2 * margin,
-		height: function(d) { return d},
+		width: xScale.rangeBand(),
+		height: function(d) { return h/100*d},
 		"fill": "#000"
 	});

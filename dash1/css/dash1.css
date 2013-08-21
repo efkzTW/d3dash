@@ -2,14 +2,31 @@
 body {
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 	margin: 0;
-	background-color: #f3f2ec;
+	background-color: #fff;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.x.axis path {
+	display: none;
+}
+
+.line {
+	fill:none;
+	stroke: steelblue;
+	stroke-width: 1.5px;
 }
 
 #wrapper {
 	width: 940px;
 	min-height: 500px;
 	margin: 10px auto 0px;
-	background-color: #f2efda;
+	background-color: #fff;
 }
 
 #header {
@@ -23,7 +40,7 @@ body {
 }
 
 #top {
-	background-color: #cedfee;
+	background-color: #fff;
 	position: relative;
 	width: 100%;
 	margin: 0px auto;
@@ -31,14 +48,14 @@ body {
 }
 
 #primary {
-	background-color: #6d2e24;
+	background-color: #fff;
 	position: relative;
 	float: left;
 	width: 60%;
 	min-height: 250px;
 }
 
-#stb-bar {
+#stb-line {
 	background-color: #fff;
 	position: relative;
 	width: 500px;
@@ -55,7 +72,7 @@ body {
 }
 
 #taiex-line {
-	background-color: #ebc3d9;
+	background-color: #fff;
 	position: relative;
 	float: top;
 	width: 100%;
@@ -63,7 +80,7 @@ body {
 }
 
 #combo-line{
-	background-color: #b5e6bd;
+	background-color: #fff;
 	position: relative;
 	float: top;
 	width: 100%;
@@ -71,7 +88,7 @@ body {
 }
 
 #bottom {
-	background-color: #edd6ca;
+	background-color: #fff;
 	position: relative;
 	min-height: 250px;
 }

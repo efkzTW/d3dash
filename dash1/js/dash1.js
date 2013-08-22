@@ -1,7 +1,7 @@
 
-var margin = {top: 10, right: 20, bottom: 25, left: 50},
-	width = 500 - margin.left - margin.right,
-	height = 220 - margin.top - margin.bottom;
+var margin = {top: 30, right: 50, bottom: 30, left: 30},
+	width = 470 - margin.left - margin.right,
+	height = 250 - margin.top - margin.bottom;
 
 var x = d3.time.scale()
 		.range([0,width]);
@@ -13,7 +13,8 @@ var parseDate = d3.time.format("%m/%d/%Y").parse;
 
 var xAxis = d3.svg.axis()
 		.scale(x)
-		.orient("bottom");
+		.orient("bottom")
+		.ticks(d3.time.months, 1);
 
 var yAxis = d3.svg.axis()
 		.scale(y)
@@ -29,11 +30,11 @@ var svg = d3.select("#stb-line").append("svg")
 		.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var dateMinFilter = parseDate("4/1/2013");
+var dateMinFilter = parseDate("3/1/2013");
 var dateMaxFilter = parseDate("5/1/2013");
 
 d3.csv("../data/stb_data.csv", function(error, data) {
-	console.log(data)
+
 	data = data.filter(function(obj) {
 		if (parseDate(obj.date) >= dateMinFilter && parseDate(obj.date) <= dateMaxFilter) {
 			return obj;
@@ -56,19 +57,49 @@ d3.csv("../data/stb_data.csv", function(error, data) {
 		  .attr("class", "y axis")
 		  .call(yAxis)
 		.append("text")
-		  .attr("transform", "rotate(-90)")
-		  .attr("y", 6)
-		  .attr("dy", ".71em")
+		  .attr("x", 80)
+		  .attr("y", 0)
+		  .attr("dy", ".65em")
 		  .style("text-anchor", "end")
-		  .text("(activations)");
+		  .text("activations");
+
+
+	var totalMax = d3.max(data, function(d){return d.total});
+	var totalMin = d3.min(data, function(d){return d.total});
+	var totalAvg = Math.floor(d3.sum(data, function(d){return d.total})/data.length) + 1;
 
 	svg.append("text")
-		.attr("transform", "translate(300,10)")
-		.text("High: ");
+		.attr("transform", "translate(" + (width *.4) + "," + (-5) + ")")
+		.text("Max.")
+		.attr("font-size", "13px");
 
 	svg.append("text")
-		.attr("transform", "translate(300, 30)")
-		.text("Low: ");
+		.attr("transform", "translate(" + (width *.4 + 25) + "," + (-5) + ")")
+		.text(totalMax)
+		.attr("font-size", "30px")
+		.attr("fill", "red");
+
+	svg.append("text")
+		.attr("transform", "translate(" + (width *.6) + "," + (-5) + ")")
+		.text("Avg.")
+		.attr("font-size", "13px");
+
+	svg.append("text")
+		.attr("transform", "translate(" + (width *.6 + 25) + "," + (-5) + ")")
+		.text(totalAvg)
+		.attr("font-size", "30px")
+		.attr("fill", "red");
+
+	svg.append("text")
+		.attr("transform", "translate(" + (width * .8) + "," + (-5) + ")")
+		.text("Min.")
+		.attr("font-size", "13px");
+
+	svg.append("text")
+		.attr("transform", "translate(" + (width * .8 + 25) + "," + (-5) + ")")
+		.text(totalMin)
+		.attr("font-size", "30px")
+		.attr("fill", "red");
 
 	svg.append("path")
 		  .datum(data)

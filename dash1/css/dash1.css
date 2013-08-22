@@ -12,6 +12,10 @@ body {
 	shape-rendering: crispEdges;
 }
 
+.x.axis text {
+	font-size: 8px;
+}
+
 .x.axis path {
 	display: none;
 }

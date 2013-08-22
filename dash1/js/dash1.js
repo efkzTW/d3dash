@@ -29,7 +29,16 @@ var svg = d3.select("#stb-line").append("svg")
 		.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("stb_data.csv", function(error, data) {
+var dateMinFilter = parseDate("4/1/2013");
+var dateMaxFilter = parseDate("5/1/2013");
+
+d3.csv("../data/stb_data.csv", function(error, data) {
+	console.log(data)
+	data = data.filter(function(obj) {
+		if (parseDate(obj.date) >= dateMinFilter && parseDate(obj.date) <= dateMaxFilter) {
+			return obj;
+		};
+	});
 	data.forEach(function(d) {
 		d.date = parseDate(d.date);
 		d.total = +d.total;

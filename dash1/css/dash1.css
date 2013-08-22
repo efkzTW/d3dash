@@ -1,6 +1,8 @@
 /* d3 stylesheet */
 
-.axis path,
+.axis path {
+	display: none;
+}
 .axis line {
 	fill: none;
 	stroke: #000;
@@ -8,7 +10,7 @@
 }
 
 .x.axis text {
-	font-size: 10px;
+	font-size: 14px;
 }
 
 .x.axis path {
@@ -49,7 +51,6 @@ body {
 	background-color: #fff;
 	position: relative;
 	width: 100%;
-	margin: 0px auto;
 	min-height: 250px;
 }
 
@@ -61,16 +62,24 @@ body {
 	min-height: 250px;
 }
 
-#stb-line {
+#ntb-line {
 	background-color: #fff;
 	position: relative;
-	width: 100%;
-	height: 220px;
-	margin: 10px auto;
+	float:left;
+	width: 50%;
+	height: 250px;
+}
+
+#tw-line {
+	background-color: #fff;
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 250px;
 }
 
 #secondary {
-	background-color: #fff;
+	background-color: #000;
 	position: relative;
 	float: left;
 	width: 50%;

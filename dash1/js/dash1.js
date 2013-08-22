@@ -24,7 +24,7 @@ var line = d3.svg.line()
 		.x(function(d){return x(d.date);})
 		.y(function(d){return y(d.total);});
 
-var svg = d3.select("#stb-line").append("svg")
+var svg = d3.select("#ntb-line").append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
 		.append("g")
@@ -40,6 +40,8 @@ d3.csv("../data/stb_data.csv", function(error, data) {
 			return obj;
 		};
 	});
+
+
 	data.forEach(function(d) {
 		d.date = parseDate(d.date);
 		d.total = +d.total;
@@ -57,8 +59,8 @@ d3.csv("../data/stb_data.csv", function(error, data) {
 		  .attr("class", "y axis")
 		  .call(yAxis)
 		.append("text")
-		  .attr("x", 80)
-		  .attr("y", 0)
+		  .attr("x", 45)
+		  .attr("y", -15)
 		  .attr("dy", ".65em")
 		  .style("text-anchor", "end")
 		  .text("activations");
@@ -68,35 +70,37 @@ d3.csv("../data/stb_data.csv", function(error, data) {
 	var totalMin = d3.min(data, function(d){return d.total});
 	var totalAvg = Math.floor(d3.sum(data, function(d){return d.total})/data.length) + 1;
 
+	var labelWidth = width + 40;
+
 	svg.append("text")
-		.attr("transform", "translate(" + (width *.4) + "," + (-5) + ")")
+		.attr("transform", "translate(" + (labelWidth *.4) + "," + (-5) + ")")
 		.text("Max.")
 		.attr("font-size", "13px");
 
 	svg.append("text")
-		.attr("transform", "translate(" + (width *.4 + 25) + "," + (-5) + ")")
+		.attr("transform", "translate(" + (labelWidth *.4 + 25) + "," + (-5) + ")")
 		.text(totalMax)
 		.attr("font-size", "30px")
 		.attr("fill", "red");
 
 	svg.append("text")
-		.attr("transform", "translate(" + (width *.6) + "," + (-5) + ")")
+		.attr("transform", "translate(" + (labelWidth *.6) + "," + (-5) + ")")
 		.text("Avg.")
 		.attr("font-size", "13px");
 
 	svg.append("text")
-		.attr("transform", "translate(" + (width *.6 + 25) + "," + (-5) + ")")
+		.attr("transform", "translate(" + (labelWidth *.6 + 25) + "," + (-5) + ")")
 		.text(totalAvg)
 		.attr("font-size", "30px")
 		.attr("fill", "red");
 
 	svg.append("text")
-		.attr("transform", "translate(" + (width * .8) + "," + (-5) + ")")
+		.attr("transform", "translate(" + (labelWidth * .8) + "," + (-5) + ")")
 		.text("Min.")
 		.attr("font-size", "13px");
 
 	svg.append("text")
-		.attr("transform", "translate(" + (width * .8 + 25) + "," + (-5) + ")")
+		.attr("transform", "translate(" + (labelWidth * .8 + 25) + "," + (-5) + ")")
 		.text(totalMin)
 		.attr("font-size", "30px")
 		.attr("fill", "red");

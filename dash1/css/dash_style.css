@@ -39,7 +39,7 @@ h1 {
 #wrapper {
 	width: 940px;
 	min-height: 500px;
-	margin: 10px auto 0px;
+	margin: 20px auto 20px;
 	background-color: #fff;
 }
 
@@ -60,56 +60,66 @@ h1 {
 	min-height: 250px;
 }
 
-#primary {
-	background-color: #fff;
-	position: relative;
-	float: left;
-	width: 50%;
-	min-height: 250px;
-}
+		#ntb-line {
+			background-color: #fff;
+			position: relative;
+			float:left;
+			width: 50%;
+			height: 250px;
+		}
 
-#ntb-line {
-	background-color: #fff;
-	position: relative;
-	float:left;
-	width: 50%;
-	height: 250px;
-}
-
-#tw-line {
-	background-color: #fff;
-	position: relative;
-	float: left;
-	width: 50%;
-	height: 250px;
-}
-
-#secondary {
-	background-color: #000;
-	position: relative;
-	float: left;
-	width: 50%;
-	min-height: 250px;
-}
-
-#taiex-line {
-	background-color: #fff;
-	position: relative;
-	float: top;
-	width: 100%;
-	min-height: 125px;
-}
-
-#combo-line{
-	background-color: #fff;
-	position: relative;
-	float: top;
-	width: 100%;
-	min-height: 125px;
-}
+		#tw-line {
+			background-color: #fff;
+			position: relative;
+			float: left;
+			width: 50%;
+			height: 250px;
+		}
 
 #section-2 {
 	background-color: #fff;
 	position: relative;
+	width: 100%;
 	min-height: 250px;
 }
+
+		#voucher-table {
+			width: 100%;
+			margin-top: 30px;
+		}
+
+		#voucher-table th{
+			font-weight: normal;
+		}
+
+		#voucher-table td{
+			height: 50px;
+			border-width: 1px 0px;
+			border-color: #d4d4d4;
+		}
+			.rowName {
+				
+			}
+			.stb {
+				background-color: #fdfafa;
+				width: 200px;
+				border-style: solid;
+			}
+
+			.te {
+				background-color: #f0ffff;
+				width: 200px;
+				border-style: solid;
+			}
+
+			.cb {
+				background-color: #eaeaf8;
+				width: 200px;
+				border-style: solid;
+			}
+
+			.up {
+				background-color: #faf0f7;
+				width: 200px;
+				border-style: solid;
+			}

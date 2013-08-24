@@ -47,22 +47,25 @@ function buildTrendLine(file, targID, marginArray, dimenArray, pastDays, product
 	});
 }
 
-buildTrendLine("../data/voucher_data.csv","#stb7", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 7, "stb");
-buildTrendLine("../data/voucher_data.csv","#stb14", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 14, "stb");
-buildTrendLine("../data/voucher_data.csv","#stb21", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 21, "stb");
-buildTrendLine("../data/voucher_data.csv","#stb28", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 28, "stb");
+var voucherMargins = {top:5, right: 5, bottom: 5, left: 5};
+var voucherDims = {width: 202, height: 54};
 
-buildTrendLine("../data/voucher_data.csv","#te7", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 7, "taiex");
-buildTrendLine("../data/voucher_data.csv","#te14", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 14, "taiex");
-buildTrendLine("../data/voucher_data.csv","#te21", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 21, "taiex");
-buildTrendLine("../data/voucher_data.csv","#te28", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 28, "taiex");
+buildTrendLine("../data/voucher_data.csv","#stb7", voucherMargins, voucherDims, 7, "stb");
+buildTrendLine("../data/voucher_data.csv","#stb14", voucherMargins, voucherDims, 14, "stb");
+buildTrendLine("../data/voucher_data.csv","#stb21", voucherMargins, voucherDims, 21, "stb");
+buildTrendLine("../data/voucher_data.csv","#stb28", voucherMargins, voucherDims, 28, "stb");
 
-buildTrendLine("../data/voucher_data.csv","#cb7", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 7, "combo");
-buildTrendLine("../data/voucher_data.csv","#cb14", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 14, "combo");
-buildTrendLine("../data/voucher_data.csv","#cb21", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 21, "combo");
-buildTrendLine("../data/voucher_data.csv","#cb28", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 28, "combo");
+buildTrendLine("../data/voucher_data.csv","#te7", voucherMargins, voucherDims, 7, "taiex");
+buildTrendLine("../data/voucher_data.csv","#te14", voucherMargins, voucherDims, 14, "taiex");
+buildTrendLine("../data/voucher_data.csv","#te21", voucherMargins, voucherDims, 21, "taiex");
+buildTrendLine("../data/voucher_data.csv","#te28", voucherMargins, voucherDims, 28, "taiex");
 
-buildTrendLine("../data/voucher_data.csv","#up7", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 7, "upgrade");
-buildTrendLine("../data/voucher_data.csv","#up14", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 14, "upgrade");
-buildTrendLine("../data/voucher_data.csv","#up21", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 21, "upgrade");
-buildTrendLine("../data/voucher_data.csv","#up28", {top:5, right: 5, bottom: 5, left: 5}, {width: 202, height: 54}, 28, "upgrade");
+buildTrendLine("../data/voucher_data.csv","#cb7", voucherMargins, voucherDims, 7, "combo");
+buildTrendLine("../data/voucher_data.csv","#cb14", voucherMargins, voucherDims, 14, "combo");
+buildTrendLine("../data/voucher_data.csv","#cb21", voucherMargins, voucherDims, 21, "combo");
+buildTrendLine("../data/voucher_data.csv","#cb28", voucherMargins, voucherDims, 28, "combo");
+
+buildTrendLine("../data/voucher_data.csv","#up7", voucherMargins, voucherDims, 7, "upgrade");
+buildTrendLine("../data/voucher_data.csv","#up14", voucherMargins, voucherDims, 14, "upgrade");
+buildTrendLine("../data/voucher_data.csv","#up21", voucherMargins, voucherDims, 21, "upgrade");
+buildTrendLine("../data/voucher_data.csv","#up28", voucherMargins, voucherDims, 28, "upgrade");

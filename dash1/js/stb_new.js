@@ -31,7 +31,7 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	var dateMinFilter = parseDate("6/1/2013");
+	var dateMinFilter = parseDate("5/1/2013");
 	var dateMaxFilter = parseDate("7/31/2013");
 
 	d3.csv(file, function(error, data) {
@@ -106,5 +106,8 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 	});
 }
 
-buildLineChart("../data/stb_data.csv","#ntb-line", {top: 30, right: 50, bottom: 30, left: 30}, {width: 470, height: 250});
-buildLineChart("../data/stb_data.csv","#tw-line", {top: 30, right: 50, bottom: 30, left: 30}, {width: 470, height: 250});
+chartMargins = {top: 30, right: 50, bottom: 30, left: 30};
+chartDims = {width: 940, height: 250};
+
+buildLineChart("../data/stb_data.csv","#ntb-line", chartMargins, chartDims);
+buildLineChart("../data/stb_data.csv","#tw-line", chartMargins, chartDims);

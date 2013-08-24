@@ -70,19 +70,22 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 		var totalMin = d3.min(data, function(d){return d.total});
 		var totalAvg = Math.floor(d3.sum(data, function(d){return d.total})/data.length) + 1;
 
-		var labelWidth = width + 40;
+		var labelWidth = width + margin.left + margin.right;
+
+		/* can try see if can make vertical data labels dynamic by 
+			having max/avg/min aligned with the x-axis */
 
 		var textLabels = svg.append("g")
 			.attr("class", "text-labels")
 			.attr("font-size", "13px");
 			textLabels.append("text")
-				.attr("transform", "translate(" + (labelWidth *.4) + "," + (-5) + ")")
+				.attr("transform", "translate(" + (labelWidth *.93) + "," + (height * 0 + 15) + ")")
 				.text("Max.");
 			textLabels.append("text")
-				.attr("transform", "translate(" + (labelWidth *.6) + "," + (-5) + ")")
+				.attr("transform", "translate(" + (labelWidth *.93) + "," + (height *.33 + 15) + ")")
 				.text("Avg.");
 			textLabels.append("text")
-				.attr("transform", "translate(" + (labelWidth * .8) + "," + (-5) + ")")
+				.attr("transform", "translate(" + (labelWidth * .93) + "," + (height *.66 + 15) + ")")
 				.text("Min.");
 
 		var textNums = svg.append("g")
@@ -90,13 +93,13 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 			.attr("font-size","30px")
 			.attr("fill", "red");
 		textNums.append("text")
-			.attr("transform", "translate(" + (labelWidth *.4 + 25) + "," + (-5) + ")")
+			.attr("transform", "translate(" + (labelWidth *.93 - 4) + "," + (height * 0 + 45) + ")")
 			.text(totalMax);
 		textNums.append("text")
-			.attr("transform", "translate(" + (labelWidth *.6 + 25) + "," + (-5) + ")")
+			.attr("transform", "translate(" + (labelWidth *.93 - 4) + "," + (height * .33 + 45) + ")")
 			.text(totalAvg);
 		textNums.append("text")
-			.attr("transform", "translate(" + (labelWidth * .8 + 25) + "," + (-5) + ")")
+			.attr("transform", "translate(" + (labelWidth *.93 - 4) + "," + (height * .66 + 45) + ")")
 			.text(totalMin);
 
 		svg.append("path")
@@ -106,8 +109,8 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 	});
 }
 
-chartMargins = {top: 30, right: 50, bottom: 30, left: 30};
-chartDims = {width: 940, height: 250};
+var chartMargins = {top: 30, right: 60, bottom: 30, left: 30};
+var chartDims = {width: 940, height: 250};
 
 buildLineChart("../data/stb_data.csv","#ntb-line", chartMargins, chartDims);
 buildLineChart("../data/stb_data.csv","#tw-line", chartMargins, chartDims);

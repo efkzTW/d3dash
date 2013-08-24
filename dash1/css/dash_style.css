@@ -36,14 +36,11 @@ h1 {
 	font-weight: bold;
 }
 
-#wrapper {
-	width: 940px;
-	min-height: 500px;
-	margin: 20px auto 20px;
-	background-color: #fff;
+.section {
+	margin-bottom: 30px;
 }
 
-#header {
+.header {
 	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 	font-size: 25px;
 	position: relative;
@@ -51,6 +48,17 @@ h1 {
 	margin: 0px auto;
 	min-height: 25px;
 	padding: 3px;
+}
+
+.sub-header {
+	margin-left: 30px;
+}
+
+#wrapper {
+	width: 940px;
+	min-height: 500px;
+	margin: 20px auto 20px;
+	background-color: #fff;
 }
 
 #section-1 {
@@ -83,11 +91,11 @@ h1 {
 
 		#voucher-table {
 			width: 100%;
-			margin-top: 30px;
 		}
 
 		#voucher-table th{
 			font-weight: normal;
+			margin: 0px;
 		}
 
 		#voucher-table td{
@@ -95,9 +103,7 @@ h1 {
 			border-width: 1px 0px;
 			border-color: #d4d4d4;
 		}
-			.rowName {
-				
-			}
+
 			.stb {
 				background-color: #fdfafa;
 				width: 200px;

@@ -1,4 +1,4 @@
-function buildLineChart(file, targID, marginArray, dimenArray){
+function buildLineChart(file, targID, marginArray, dimenArray, xLabel){
 
 	var margin = {top: marginArray.top, right: marginArray.right, bottom: marginArray.bottom, left: marginArray.left},
 		width = dimenArray.width - margin.left - margin.right,
@@ -50,6 +50,15 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 		x.domain(d3.extent(data, function(d) {return d.date;}));
 		y.domain(d3.extent(data, function(d) {return d.total;}));
 
+		svg.append("rect")
+			.attr({
+				x: 0,
+				y: 0,
+				width: width,
+				height: height,
+				"fill": "#f7f7f7"
+			});
+
 		svg.append("g")
 			  .attr("class", "x axis")
 			  .attr("transform", "translate(0," + height + ")")
@@ -59,11 +68,10 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 			  .attr("class", "y axis")
 			  .call(yAxis)
 			.append("text")
-			  .attr("x", 45)
+			  .attr("x",0)
 			  .attr("y", -15)
 			  .attr("dy", ".65em")
-			  .style("text-anchor", "end")
-			  .text("activations");
+			  .text(xLabel);
 
 
 		var totalMax = d3.max(data, function(d){return d.total});
@@ -110,7 +118,7 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 }
 
 var chartMargins = {top: 30, right: 60, bottom: 30, left: 30};
-var chartDims = {width: 799, height: 250};
+var chartDims = {width: 940, height: 250};
 
-buildLineChart("../data/stb_data.csv","#ntb-line", chartMargins, chartDims);
-buildLineChart("../data/stb_data.csv","#tw-line", chartMargins, chartDims);
+buildLineChart("../data/stb_data.csv","#ntb-line", chartMargins, chartDims, "Taiwan");
+buildLineChart("../data/stb_data.csv","#tw-line", chartMargins, chartDims, "NTB");

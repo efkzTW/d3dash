@@ -48,7 +48,7 @@ function buildTrendLine(file, targID, marginArray, dimenArray, pastDays, product
 }
 
 var voucherMargins = {top:5, right: 5, bottom: 5, left: 5};
-var voucherDims = {width: 202, height: 54};
+var voucherDims = {width: 183, height: 54};
 
 buildTrendLine("../data/voucher_data.csv","#stb7", voucherMargins, voucherDims, 7, "stb");
 buildTrendLine("../data/voucher_data.csv","#stb14", voucherMargins, voucherDims, 14, "stb");

@@ -110,7 +110,7 @@ function buildLineChart(file, targID, marginArray, dimenArray){
 }
 
 var chartMargins = {top: 30, right: 60, bottom: 30, left: 30};
-var chartDims = {width: 940, height: 250};
+var chartDims = {width: 799, height: 250};
 
 buildLineChart("../data/stb_data.csv","#ntb-line", chartMargins, chartDims);
 buildLineChart("../data/stb_data.csv","#tw-line", chartMargins, chartDims);

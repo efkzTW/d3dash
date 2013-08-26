@@ -1,4 +1,4 @@
-function buildTrendLine(file, targID, marginArray, dimenArray, pastDays, product){
+function buildTrendLine(file, DOM, marginArray, dimenArray, pastDays, product){
 
 	var margin = {top: marginArray.top, right: marginArray.right, bottom: marginArray.bottom, left: marginArray.left},
 		width = dimenArray.width - margin.left - margin.right,
@@ -16,7 +16,7 @@ function buildTrendLine(file, targID, marginArray, dimenArray, pastDays, product
 			.x(function(d){return x(d.date);})
 			.y(function(d){return y(d[product]);});
 
-	var svg = d3.select(targID).append("svg")
+	var svg = d3.select(DOM).append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
 			.append("g")

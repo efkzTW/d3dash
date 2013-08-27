@@ -1,0 +1,71 @@
+/* ------HTML Section ------*/
+/* Basic elements */
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #fff;
+	color: #000;
+	margin: 0px;
+}
+
+h2 {
+	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+}
+
+
+/* IDs */
+#overview {
+	position: relative;
+	float: left;
+	width: 80%;
+}
+
+#active {
+	position: relative;
+	float: left;
+	width: 20%;
+}
+
+/* Classes */
+.wrapper {
+	width: 960px;
+	margin: 15px auto;
+}
+
+.active {
+	width: 100%;
+}
+.subs {
+	position: relative;
+	float: left;
+	width: 50%;
+}
+
+.section {
+	position: relative;
+	width: 100%;
+}
+
+.title {
+	position: relative;
+	float: left;
+	width: 10%;
+}
+.content {
+	position: relative;
+	float: left;
+	width: 90%;
+	margin-bottom: 10px;
+}
+
+.graph {
+	position: relative;
+	float: left;
+	width: 33.33%;
+	margin: 0px auto;
+}
+
+/* JS styles */
+.text {
+	fill: #ffa500;
+	font-weight: bold;
+}

@@ -21,6 +21,10 @@ var y = d3.scale.ordinal()
 		.domain(d3.range(dataset.length))
 		.rangeRoundBands([0,height], 0.15);
 
+var yAxis = d3.svg.axis()
+			.scale(y)
+			.orient("left");
+
 canvas.selectAll("rect").data(dataset)
 		.enter()
 		.append("rect")
@@ -46,3 +50,9 @@ canvas.selectAll("text").data(dataset)
 			.duration(1000)
 			.text(function(d){return d;})
 			.attr("x", function(d){return x(d) + 2;});
+
+canvas.append("g")
+		.attr("class", "y axis")
+		.call(yAxis);
+
+

@@ -54,7 +54,7 @@ function buildBarChart(dataset,DOM,marginArray,dimArray, gap) {
 
 	canvas.append("g")
 			.attr("class", "x axis")
-			.attr("transform", "translate(0," + 10 + ")")
+			.attr("transform", "translate(0," + (height) + ")")
 			.call(xAxis);
 }
 

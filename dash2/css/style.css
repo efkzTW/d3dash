@@ -5,6 +5,7 @@ body {
 	background-color: #fff;
 	color: #000;
 	margin: 0px;
+	font-size: .8em;
 }
 
 h2 {
@@ -41,7 +42,7 @@ h2 {
 }
 
 .section {
-	position: relative;
+	overflow: overlay;
 	width: 100%;
 }
 
@@ -67,5 +68,21 @@ h2 {
 /* JS styles */
 .text {
 	fill: #ffa500;
+	font-size: .8em;
 	font-weight: bold;
+}
+
+.x.axis {
+	font-size: .8em;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: none;
+	shape-rendering: crispEdges;
+}
+
+.axis path {
+	display: none;
 }

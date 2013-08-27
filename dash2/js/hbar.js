@@ -1,5 +1,5 @@
 var dimWidth = 192;
-var dimHeight = 100;
+var dimHeight = 50;
 
 var margin = {top: 0, right: 20, bottom: 0, left: 40},
 	width = dimWidth - margin.left - margin.right,
@@ -39,10 +39,10 @@ canvas.selectAll("text").data(dataset)
 		.append("text")
 			.attr("class", "text")
 			.text(0)
-			.attr("x", function(d){return 0;})
-			.attr("y", function(d,i){return y(i) + 15;})
+			.attr("x", function(d){return 2;})
+			.attr("y", function(d,i){return y(i) + 8;})
 			.transition()
 			.delay(500)
 			.duration(1000)
 			.text(function(d){return d;})
-			.attr("x", function(d){return x(d);});
+			.attr("x", function(d){return x(d) + 2;});

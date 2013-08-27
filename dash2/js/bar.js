@@ -19,6 +19,10 @@ function buildBarChart(dataset,DOM,marginArray,dimArray, gap) {
 			.domain([0,d3.max(dataset)])
 			.range([height,0]);
 
+	var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient("bottom")
+
 	canvas.selectAll("rect")
 		.data(dataset)
 		.enter()
@@ -26,13 +30,12 @@ function buildBarChart(dataset,DOM,marginArray,dimArray, gap) {
 			.attr("x",function(d,i){return x(i);})
 			.attr("y",function(d){return height;})
 			.attr("width", x.rangeBand())
+			.attr("height",0)
 			.transition()
 			.delay(500)
 			.duration(1000)
 			.attr("y", function(d){return y(d);})
 			.attr("height", function(d){return height-y(d);});
-
-
 
 	canvas.selectAll("text")
 			.data(dataset)
@@ -48,10 +51,15 @@ function buildBarChart(dataset,DOM,marginArray,dimArray, gap) {
 			.duration(1000)
 			.text(function(d){return d;})
 			.attr("y", function(d){return (y(d)-2);});
+
+	canvas.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + 10 + ")")
+			.call(xAxis);
 }
 
-var margins = {top: 15, bottom: 0, left: 5, right: 5};
-var dims = {width: 192, height: 342};
+var margins = {top: 15, bottom: 20, left: 5, right: 5};
+var dims = {width: 192, height: 192};
 
 buildBarChart([1762, 29030+266], "#active", margins, dims, .2);
 
@@ -59,5 +67,5 @@ var overviewCharts = {0: "#daily-tw", 1:"#daily-ntb", 2: "#weekly-tw",
 						3:"#weekly-ntb", 4: "#monthly-tw", 5:"#monthly-ntb"};
 
 for (var i = 0; i<=8; i++) {
-	buildBarChart([1,2,3,4,5,6,7], overviewCharts[i], margins, {width:230,height:100},.3);
+	buildBarChart([1,2,3,4,5,6,7], overviewCharts[i], margins, {width:180,height:50},.3);
 }

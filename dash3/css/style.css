@@ -1,0 +1,107 @@
+/* ------HTML Section ------*/
+/* Flex shared elements */
+.container {
+	display: -webkit-flex;
+	display: flex;
+}
+
+.flex-column {
+	-webkit-flex-direction: column;
+	flex-direction: column;
+}
+/* Basic elements */
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #fff;
+	color: #000;
+	margin: 0px;
+	font-size: .8em;
+}
+
+h1 {
+	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+	margin: 0px;
+}
+
+
+/* IDs */
+#current, #report-date {
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+#header {
+	-webkit-flex:3;
+	flex: 3;
+}
+
+#new {
+	-webkit-flex:2;
+	flex:2;
+}
+
+#annual {
+	-webkit-flex:1;
+	flex:1;
+}
+
+#report-date {
+	text-align: center;
+}
+
+/* Classes */
+.wrapper {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	width: 960px;
+	margin: 0px auto;
+	background-color: #8e8e8e;
+}
+
+.section {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction:row;
+	background-color: #ff6103;
+}
+
+.flex-sub{
+	background-color: #7171c6;
+	margin: 1px;
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+/* text classes */
+.header {
+	margin: 1px auto;
+	text-align: center;
+}
+
+
+
+
+/* JS styles */
+.text {
+	fill: #ffa500;
+	font-size: .8em;
+	font-weight: bold;
+}
+
+.x.axis, .y.axis {
+	font-size: .8em;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: none;
+	shape-rendering: crispEdges;
+}
+
+.axis path {
+	display: none;
+}

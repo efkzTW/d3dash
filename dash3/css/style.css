@@ -5,7 +5,7 @@
 	display: flex;
 }
 
-.flex-column {
+.flex-col {
 	-webkit-flex-direction: column;
 	flex-direction: column;
 }
@@ -51,18 +51,12 @@ h1 {
 
 /* Classes */
 .wrapper {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-direction: column;
-	flex-direction: column;
 	width: 960px;
 	margin: 0px auto;
 	background-color: #8e8e8e;
 }
 
 .section {
-	display: -webkit-flex;
-	display: flex;
 	-webkit-flex-direction: row;
 	flex-direction:row;
 	background-color: #ff6103;
@@ -81,7 +75,15 @@ h1 {
 	text-align: center;
 }
 
+.name {
+	-webkit-flex: 1;
+	flex: 1;
+}
 
+.region {
+	-webkit-flex: 2;
+	flex: 2;
+}
 
 
 /* JS styles */

@@ -26,7 +26,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	d3.json(dataSrc.rawData, function(error, json) {
-		if (error) return console.warn(error);
+		if (error) {return console.warn(error);}
 		var dataset = [];
 
 		for (perDate in json) {
@@ -43,7 +43,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 		});
 		// sort object array by date
 		dataset.sort(function(a,b){return a.date-b.date;}); 
-		console.log(dataset);
+		//console.log(dataset);
 
 		yScale.domain([0,d3.max(dataset, function(d){return d.val;})]);
 		xScale.domain(dataset.map(function(d){return d.date;}));

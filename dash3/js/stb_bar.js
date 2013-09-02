@@ -1,8 +1,8 @@
 //rawDate = data, key1 = data key1, key2 = data key2, id = dom id,
 function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 
-	var fullWidth = 255, fullHeight= 100;
-	var margin = {top: 10, right: 10, bottom: 15, left: 10},
+	var fullWidth = 270, fullHeight= 100;
+	var margin = {top: 10, right: 10, bottom: 15, left: 20},
 		width = fullWidth - margin.left - margin.right,
 		height = fullHeight - margin.top - margin.bottom;
 
@@ -77,7 +77,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 				.attr("y", function(d){return (yScale(d.val)-2);})
 
 		canvas.append("g")
-			.attr("class", "x axis")
+			.attr("class", "xBar axis")
 			.attr("transform", "translate(0," + (height-5) + ")")
 			.call(xAxis);
 	});
@@ -85,3 +85,9 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 
 buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-daily","%a");
 buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-daily","%a");
+
+buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-weekly","%a");
+buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-weekly","%a");
+
+buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-monthly","%a");
+buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-monthly","%a");

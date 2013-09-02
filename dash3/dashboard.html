@@ -4,41 +4,41 @@
 	<head>
 		<meta charset="utf-8" />
 		<script src="js/lib/d3.v3.js"></script>
+		<script src="js/lib/jquery-1.10.2.js"></script>
 		<link rel="stylesheet" href="css/style.css" />
 		<title>summary</title>
 	</head>
 	<body>
 		<div class="wrapper container flex-col">
 			<div class="section container">
-				<div id="current" class="flex-sub">
-					total
+				<div id="total" class="container flex-sub flex-col">
+					<div class="flex-sub">Taiwan: <span id="tw-active" class="active"></span> active</div>
+					<div class="flex-sub">NTB: <span id="ntb-active" class="active"></span> active</div>
 				</div>
 				<div id="header" class="flex-sub header">
-					<h1>Activations Summary</h1>
+					<h1>ACTIVATIONS SUMMARY</h1>
 				</div>
-				<div id="report-date" class="flex-sub">
-					Report as of Yesterday
+				<div id="report-date" class="flex-sub container v-cRight">
 				</div>
 			</div>
 
 			<div class="section container">
 				<div id="new" class="flex-sub">
-					<div class="title">New Activations</div>
 					<div class="content container flex-col">
 						<div class="row container ">
-							<div class="name">daily</div>
+							<div class="name v-center container">daily</div>
 							<div id="tw-daily" class="region"></div>
 							<div id="ntb-daily" class="region"></div>
 						</div>
 						<div class="row container">
-							<div class="name">weekly</div>
-							<div id="tw-weekly" class="region">tw</div>
-							<div id="ntb-weekly" class="region">ntb</div>
+							<div class="name v-center container">weekly</div>
+							<div id="tw-weekly" class="region"></div>
+							<div id="ntb-weekly" class="region"></div>
 						</div>
 						<div class="row container">
-							<div class="name">monthly</div>
-							<div id="tw-monthly" class="region">tw</div>
-							<div id="ntb-monthly" class="region">ntb</div>
+							<div class="name v-center container">monthly</div>
+							<div id="tw-monthly" class="region"></div>
+							<div id="ntb-monthly" class="region"></div>
 						</div>
 					</div>
 				</div>
@@ -59,18 +59,19 @@
 			</div>
 			<div class="section container">
 				<div id="trend-7" class="flex-sub">
-					trend-7
+					past 7 days
 				</div>
 				<div id="trend-14" class="flex-sub">
-					trend-14
+					past 14 days
 				</div>
 				<div id="trend-21" class="flex-sub">
-					trend-21
+					past 21 days
 				</div>
 			</div>
 		</div>
 
 		<script src="js/stb_bar.js"></script>
 		<script src="js/line_graph.js"></script>
+		<script src="js/texts.js"></script>
 	</body>
 </html>

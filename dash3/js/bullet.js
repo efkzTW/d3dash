@@ -88,8 +88,20 @@ function buildBullet(dataSrc, id) {
 					.attr("x", xScale(dataset[0].valNew) + 2)
 					.text(dataset[0].valNew + " new");
 
+
 		canvas.append("text")
 					.attr("class", "bulletText total")
+					.attr("x",0)
+					.attr("y", height*.9 * 2/3)
+					.text("")
+					.transition()
+					.delay(800)
+					.duration(1000)
+					.attr("x", xScale(dataset[0].valSum) + 2)
+					.text(dataset[0].valSum);
+
+		canvas.append("text")
+					.attr("class", "bulletText label")
 					.attr("x", 0)
 					.attr("y", -2)
 					.text(dataSrc.key2);

@@ -1,6 +1,6 @@
 $.getJSON("data/daily_report.json", function(data) {
-	console.log(data);
-	console.log(data["report_date"]);
+	//console.log(data);
+	//console.log(data["report_date"]);
 	//update report date
 	var lastDate = data["report_date"];
 	$("#report-date").text("Report Date: " + lastDate);

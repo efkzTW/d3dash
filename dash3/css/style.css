@@ -77,7 +77,7 @@ h1 {
 .section {
 	-webkit-flex-direction: row;
 	flex-direction:row;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	/*background-color: #ff6103;*/
 }
 
@@ -116,6 +116,9 @@ h1 {
 	flex: 2;
 }
 
+.bullet-label {
+	font-size: 1.2em;
+}
 
 /* JS styles */
 .line {
@@ -124,24 +127,37 @@ h1 {
 	stroke-width: 2px;
 }
 
-.text {
+.text, .bulletText.new {
 	fill: #ffa500;
 	font-size: .8em;
 	font-weight: bold;
 }
 
-.xBar.axis, .xLine.axis, .yLine.axis {
+.annual.text{
+	font-size: 1.2em;
+}
+
+.bulletText.total {
+	font-size: 1em;
+}
+
+.bulletNew {
+	fill:#eeee00;
+}
+
+.xBar.axis, .xLine.axis, .yLine.axis, .bullet.axis {
 	font-size: .8em;
 }
 
-.xLine.axis line, .yLine.axis line {
+.xLine.axis line, .yLine.axis line, .bullet.axis line {
 	fill: none;
 	stroke: #000;
 	shape-rendering: crispEdges;
 }
 
 .xLine.axis path, .yLine.axis path,
-.xBar.axis path, .xBar.axis line {
+.xBar.axis path, .xBar.axis line, .bullet.axis path,
+.annual.xAxis path{
 	display: none;
 }
 

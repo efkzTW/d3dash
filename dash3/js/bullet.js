@@ -1,4 +1,4 @@
-function buildBullet(dataSrc, id) {
+function buildBullet(dataSrc, id, outputType) {
 	var fullWidth = 318;
 	var fullHeight = 50;
 	var margin = {top:15, right: 20, bottom: 15, left: 10},
@@ -22,17 +22,17 @@ function buildBullet(dataSrc, id) {
 
 	d3.json(dataSrc.rawData, function(error, json) {
 		if (error) {return console.warn(error);}
+		
+		//store data of the specified voucher type
 		var dataset = [];
-		var dataset2 =[]
+		//store both TaiEx and Combo sales in order to find max xAxis scale
+		var dataset2 = [];
+
 		for (perDate in json) {
 			if (parseDate(perDate) !== null) {
-				dataset.push({date:perDate, valNew:json[perDate][dataSrc.key1][dataSrc.key2][dataSrc.key3], valRe:json[perDate][dataSrc.key1][dataSrc.key2][dataSrc.key3]});
-			}
-		}
-		for (perDate in json) {
-			if (parseDate(perDate) !== null) {
-				dataset2.push({date:perDate, valNew:json[perDate]["5"]["Combo"]["DN"], valRe:json[perDate]["5"]["Combo"]["DR"],
-								valNew2:json[perDate]["5"]["TaiEx"]["DN"], valRe2:json[perDate]["5"]["TaiEx"]["DR"]});
+			 	dataset.push({date:perDate, valNew:json[perDate][dataSrc.key1][dataSrc.key2][dataSrc.key3], valRe:json[perDate][dataSrc.key1][dataSrc.key2][dataSrc.key4]});
+			 	dataset2.push({date:perDate, valNew:json[perDate]["5"]["Combo"][dataSrc.key3], valRe:json[perDate]["5"]["Combo"][dataSrc.key4],
+								valNew2:json[perDate]["5"]["TaiEx"][dataSrc.key3], valRe2:json[perDate]["5"]["TaiEx"][dataSrc.key4]});
 			}
 		}
 
@@ -41,16 +41,64 @@ function buildBullet(dataSrc, id) {
 			d.valSum = +d.valNew + d.valRe;
 		});
 
-		dataset2.forEach(function(d){
-			d.valSum = +d.valNew + d.valRe;
-			d.valSum2 = +d.valNew2 + d.valRe2;
-		})
+		// switch case on determining xAxis max length
+		switch (outputType){
+			case "monthly":
+				dataset2.push({"valSum":(dataset2[0]["valNew"]+dataset2[0]["valRe"]), 
+								"valSum2":(dataset2[0]["valNew2"]+dataset2[0]["valRe2"])});
+				break;
 
-		var latestDate = d3.max(dataset, function(d) {return d.date;});
-		
+			case "weekly":
+				//find week day
+				var maxDate = parseDate(dataset[0]["date"]).getUTCDay();
+				
+				var sumNew = 0, sumTotal = 0;
+				var sumTotal1 = 0, sumTotal2 = 0;
+				//loop through each date in the weekly report
+				dataset.forEach(function(d){
+					console.log(d);
+					//console.log(parseDate(d["date"]));
+					//console.log(parseDate(d["date"]).getUTCDay());
+
+					if (parseDate(d["date"]).getUTCDay() <= maxDate) {
+						//console.log("true");
+						sumNew = sumNew + d["valNew"];
+						sumTotal = sumTotal + d["valSum"];
+					}
+				});
+
+				dataset.unshift({"valNew": sumNew, "valSum": sumTotal});
+
+
+				dataset2.forEach(function(d){
+					if (parseDate(d["date"]).getUTCDay() <= maxDate) {
+						sumTotal1 = sumTotal1 + d["valNew"] + d["valRe"];
+						sumTotal2 = sumTotal2 + d["valNew2"] + d["valRe2"];
+					}
+				});
+				dataset2.push({"valSum": sumTotal1, "valSum2": sumTotal2});
+
+				//console.log("new: " + sumNew);
+				//console.log("total: " + sumTotal);
+				
+
+				//dataset2.push({"valSum":sumNew, "val"})
+
+				break;
+
+			default:
+				dataset2.forEach(function(d){
+					d.valSum = +d.valNew + d.valRe;
+					d.valSum2 = +d.valNew2 + d.valRe2;
+				});
+				break;
+		}
+
+		//console.log(dataset2);
+
 		var bulletMax = d3.max([d3.max(dataset2, function(d) {return d.valSum;}), d3.max(dataset2, function(d) {return d.valSum2;})])
 
-		console.log(bulletMax);
+		//console.log(bulletMax);
 		xScale.domain([0,bulletMax]);
 
 		//console.log(dataset[0].valSum);
@@ -86,7 +134,7 @@ function buildBullet(dataSrc, id) {
 					.delay(800)
 					.duration(1000)
 					.attr("x", xScale(dataset[0].valNew) + 2)
-					.text(dataset[0].valNew + " new");
+					.text("+" + dataset[0].valNew);
 
 
 		canvas.append("text")
@@ -95,7 +143,7 @@ function buildBullet(dataSrc, id) {
 					.attr("y", height*.9 * 2/3)
 					.text("")
 					.transition()
-					.delay(800)
+					.delay(500)
 					.duration(1000)
 					.attr("x", xScale(dataset[0].valSum) + 2)
 					.text(dataset[0].valSum);
@@ -113,11 +161,11 @@ function buildBullet(dataSrc, id) {
 	});
 }
 
-buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#d-bul-combo");
-buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "TaiEx", key3: "DN", key4: "DR"}, "#d-bul-taiex");
+//buildBullet({rawData: jsonYesterdayURL, key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#d-bul-combo");
+//buildBullet({rawData: jsonYesterdayURL, key1: "5", key2: "TaiEx", key3: "DN", key4: "DR"}, "#d-bul-taiex");
 
-buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#w-bul-combo");
-buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "TaiEx", key3: "DN", key4: "DR"}, "#w-bul-taiex");
+//buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#w-bul-combo");
+//buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "TaiEx", key3: "DN", key4: "DR"}, "#w-bul-taiex");
 
-buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#m-bul-combo");
-buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "TaiEx", key3: "DN", key4: "DR"}, "#m-bul-taiex");
+//buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#m-bul-combo");
+//buildBullet({rawData:"data/daily_report.json", key1: "5", key2: "TaiEx", key3: "DN", key4: "DR"}, "#m-bul-taiex");

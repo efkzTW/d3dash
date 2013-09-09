@@ -74,6 +74,6 @@ function buildLineGraph(dataSrc,id){
 
 }
 
-buildLineGraph({rawData:"data/daily_report.json",key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-7")
-buildLineGraph({rawData:"data/daily_report.json",key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-14")
-buildLineGraph({rawData:"data/daily_report.json",key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-21")
+//buildLineGraph({rawData:jsonYesterdayURL,key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-7")
+//buildLineGraph({rawData:"data/daily_report.json",key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-14")
+//buildLineGraph({rawData:"data/daily_report.json",key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-21")

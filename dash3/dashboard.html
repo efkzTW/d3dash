@@ -12,19 +12,25 @@
 		<div class="wrapper container flex-col">
 			<div class="section container">
 				<div id="total" class="container flex-sub flex-col">
-					<div class="flex-sub">Taiwan: <span id="tw-active" class="active"></span> active</div>
-					<div class="flex-sub">NTB: <span id="ntb-active" class="active"></span> active</div>
+					<div class="flex-sub">Taiwan: <span id="tw-active" class="active"></span> currently active</div>
+					<div class="flex-sub">NTB: <span id="ntb-active" class="active"></span> currently active</div>
 				</div>
 				<div id="header" class="flex-sub header">
 					<h1>ACTIVATIONS SUMMARY</h1>
 				</div>
 				<div id="report-date" class="flex-sub container v-cRight">
+					<div>Report Date: <span id="yesterday-report"></span></div>
 				</div>
 			</div>
 
 			<div class="section container">
 				<div id="new" class="flex-sub">
 					<div class="content container flex-col">
+						<div class="row container ">
+							<div class="container"></div>
+							<div class="name region container v-center">TW</div>
+							<div class="name region container v-center">NTB</div>
+						</div>
 						<div class="row container ">
 							<div class="name v-center container">daily</div>
 							<div id="tw-daily" class="region"></div>
@@ -48,21 +54,21 @@
 			</div>
 			<div class="section container">
 				<div class="container flex-sub flex-col v-center">
-					<div class="name">daily</div>
+					<div class="name">yesterday</div>
 					<div id="d-bul-combo" class="flex-sub">
 					</div>
 					<div id="d-bul-taiex" class="flex-sub">
 					</div>
 				</div>
 				<div class="container flex-sub flex-col v-center">
-					<div class="name">weekly</div>
+					<div class="name">this week</div>
 					<div id="w-bul-combo" class="flex-sub">
 					</div>
 					<div id="w-bul-taiex" class="flex-sub">
 					</div>
 				</div>
 				<div class="container flex-sub flex-col v-center">
-					<div class="name">monthly</div>
+					<div class="name">this month</div>
 					<div id="m-bul-combo" class="flex-sub">
 					</div>
 					<div id="m-bul-taiex" class="flex-sub">
@@ -81,12 +87,10 @@
 				</div>
 			</div>
 		</div>
-
 		<script src="js/stb_bar.js"></script>
 		<script src="js/annual.js"></script>
 		<script src="js/line_graph.js"></script>
-		<script src="js/texts.js"></script>
 		<script src="js/bullet.js"></script>
-
+		<script src="js/texts.js"></script>
 	</body>
 </html>

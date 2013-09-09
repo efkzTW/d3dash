@@ -74,7 +74,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 						.delay(500)
 						.duration(1000)
 				.text(function(d){return d.val;})
-				.attr("y", function(d){return (yScale(d.val)-2);})
+				.attr("y", function(d){return (yScale(d.val)-2);});
 
 		canvas.append("g")
 			.attr("class", "xBar axis")
@@ -83,11 +83,11 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 	});
 }
 
-buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-daily","%a");
-buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-daily","%a");
+//buildBarChart({rawData:jsonYesterdayURL,key1:"4",key2:"TD"}, "#tw-daily","%a");
+//buildBarChart({rawData:jsonYesterdayURL,key1:"4",key2:"ND"}, "#ntb-daily","%a");
 
-buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-weekly","%a");
-buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-weekly","%a");
+//buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-weekly","%a");
+//buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-weekly","%a");
 
-buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-monthly","%a");
-buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-monthly","%a");
+//buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"TD"}, "#tw-monthly","%a");
+//buildBarChart({rawData:"data/daily_report.json",key1:"4",key2:"ND"}, "#ntb-monthly","%a");

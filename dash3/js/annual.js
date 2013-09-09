@@ -1,4 +1,4 @@
-
+function buildAnnualBar(){
 var fullWidth = 319;
 var fullHeight = 309;
 var margin = {top: 15, right: 10, bottom: 19, left: 20},
@@ -65,3 +65,4 @@ canvas.append("g")
 		.attr("class","annual xAxis")
 		.attr("transform","translate(0," + (height-5) + ")")
 		.call(xAxis);
+}

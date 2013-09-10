@@ -113,8 +113,8 @@ h1 {
 }
 
 .region {
-	-webkit-flex: 2;
-	flex: 2;
+	-webkit-flex: 3;
+	flex: 3;
 }
 
 .bullet-label {
@@ -133,6 +133,11 @@ h1 {
 	fill: #000;
 	font-size: .8em;
 	font-weight: bold;
+}
+
+.barAvg {
+	fill: #CDCD00;
+	fill-opacity: 1;
 }
 
 .annual.text{
@@ -187,4 +192,12 @@ h1 {
 	fill: none;
 	stroke: #009b95;
 	stroke-width: 1.5px;
+}
+
+.line.avg{
+	fill: none;
+	stroke: #eeee00;
+	stroke-dasharray: 5,5;
+	stroke-width: 2px;
+	stroke-opacity: .6;
 }

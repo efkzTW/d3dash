@@ -2,7 +2,7 @@
 function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 
 	var fullWidth = 270, fullHeight= 100;
-	var margin = {top: 10, right: 10, bottom: 15, left: 20},
+	var margin = {top: 10, right: 25, bottom: 15, left: 25},
 		width = fullWidth - margin.left - margin.right,
 		height = fullHeight - margin.top - margin.bottom;
 
@@ -164,6 +164,18 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 				.attr("y", function(d){return yScale(d.val);})
 				.attr("height", function(d){return height-yScale(d.val);});
 		
+		canvas.append("line")
+			.attr("class", "line avg")
+			.attr("x1", 0)
+			.attr("y1", height)
+			.attr("x2", width)
+			.attr("y2", height)
+			.transition()
+			.delay(700)
+			.duration(1000)
+			.attr("y1", yScale(d3.mean(dataset,function(d){return d.val;})))
+			.attr("y2", yScale(d3.mean(dataset,function(d){return d.val;})));
+
 		canvas.selectAll("text")
 			.data(dataset)
 			.enter()
@@ -178,10 +190,34 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 				.text(function(d){return d.val;})
 				.attr("y", function(d){return (yScale(d.val)-2);});
 
+
+		canvas.append("text")
+			.attr("class", "text barAvg")
+			.text("Avg.")
+			.attr("x", -1)
+			.attr("y", height + 3)
+			.style("text-anchor", "end")
+			.transition()
+			.delay(700)
+			.duration(1000)
+			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3);
+
+		canvas.append("text")
+			.attr("class", "text barAvg")
+			.text(Math.floor(d3.mean(dataset,function(d){return d.val;})))
+			.attr("x", width + 2)
+			.attr("y", height + 3)
+			.transition()
+			.delay(700)
+			.duration(1000)
+			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3);
+
+
 		canvas.append("g")
 			.attr("class", "xBar axis")
 			.attr("transform", "translate(0," + (height-5) + ")")
 			.call(xAxis);
+
 	}
 
 	function convertDateStr(url, daysBack, monthsBack) {

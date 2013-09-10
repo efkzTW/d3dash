@@ -108,7 +108,8 @@ h1 {
 .name {
 	-webkit-flex: 1;
 	flex: 1;
-	font-size: 1.5em;
+	font-weight: bold;
+	font-size: 1.2em;
 }
 
 .region {
@@ -117,6 +118,7 @@ h1 {
 }
 
 .bullet-label {
+	font-weight: bold;
 	font-size: 1.2em;
 }
 
@@ -128,7 +130,7 @@ h1 {
 }
 
 .text, .bulletText.new {
-	fill: #ffa500;
+	fill: #000;
 	font-size: .8em;
 	font-weight: bold;
 }
@@ -141,14 +143,22 @@ h1 {
 	font-size: 1em;
 }
 
-.bulletText.total{
+.lineText.voucher, .bulletText.total{
 	fill: #000;
 	font-size: .8em;
 	font-weight: bold;
 }
 
+.bulletSum {
+	fill: #009b95;
+}
+
 .bulletNew {
-	fill:#eeee00;
+	fill: #eeee00;
+}
+
+.bar {
+	fill: #009b95;
 }
 
 .xBar.axis, .xLine.axis, .yLine.axis, .bullet.axis {
@@ -167,3 +177,14 @@ h1 {
 	display: none;
 }
 
+.line1{
+	fill: none;
+	stroke: #ff7100;
+	stroke-width: 1.5px;
+}
+
+.line2{
+	fill: none;
+	stroke: #009b95;
+	stroke-width: 1.5px;
+}

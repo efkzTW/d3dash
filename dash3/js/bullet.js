@@ -56,7 +56,7 @@ function buildBullet(dataSrc, id, outputType) {
 				var sumTotal1 = 0, sumTotal2 = 0;
 				//loop through each date in the weekly report
 				dataset.forEach(function(d){
-					console.log(d);
+					
 					//console.log(parseDate(d["date"]));
 					//console.log(parseDate(d["date"]).getUTCDay());
 

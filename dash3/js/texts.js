@@ -29,17 +29,25 @@
 	buildBullet({rawData:jsonURL, key1: "5", key2: "Combo", key3: "MN", key4: "MR"}, "#m-bul-combo", "monthly");
 	buildBullet({rawData:jsonURL, key1: "5", key2: "TaiEx", key3: "MN", key4: "MR"}, "#m-bul-taiex", "monthly");
 
-	buildBarChart({rawData:jsonURL,key1:"4",key2:"TD"}, "#tw-daily","%a");
-	buildBarChart({rawData:jsonURL,key1:"4",key2:"ND"}, "#ntb-daily","%a");
+	buildBarChart({rawData:jsonURL,key1:"4",key2:"TD"}, "#tw-daily","%a","daily");
+	buildBarChart({rawData:jsonURL,key1:"4",key2:"ND"}, "#ntb-daily","%a","daily");
 
-	buildLineGraph({rawData:jsonURL,key1:"5",key2:"Combo",key3:"DN",key4:"DR"},"#trend-7")
+	buildBarChart({rawData:jsonURL,key1:"4",key2:"TD"}, "#tw-weekly","%m/%d","weekly");
+	buildBarChart({rawData:jsonURL,key1:"4",key2:"ND"}, "#ntb-weekly","%m/%d","weekly");
+
+	buildBarChart({rawData:jsonURL,key1:"4",key2:"TM"}, "#tw-monthly","%b","monthly");
+	buildBarChart({rawData:jsonURL,key1:"4",key2:"NM"}, "#ntb-monthly","%b","monthly");
+
+	buildLineGraph({rawData:[jsonURL],key1:"5",key2:["Combo", "TaiEx"],key3:"DN",key4:"DR"},"#trend-7","7days")
+	buildLineGraph({rawData:[jsonURL],key1:"5",key2:["Combo", "TaiEx"],key3:"DN",key4:"DR"},"#trend-14","14days")
+	buildLineGraph({rawData:[jsonURL],key1:"5",key2:["Combo", "TaiEx"],key3:"DN",key4:"DR"},"#trend-21","21days")
 }());
 
 
 
 
 function totalSubs(url, lastDate) {
-$.getJSON(url, function(data) {
+	$.getJSON(url, function(data) {
 
 	var ntbTotal = data[lastDate]["1"]["NTB"]["Active"] + data[lastDate]["1"]["NTB"]["ActiveAddon"];
 	var twTotal = data[lastDate]["1"]["TW"]["Active"];

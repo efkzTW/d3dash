@@ -1,5 +1,5 @@
 //rawDate = data, key1 = data key1, key2 = data key2, id = dom id,
-function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
+function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 
 	var fullWidth = 270, fullHeight= 100;
 	var margin = {top: 10, right: 10, bottom: 15, left: 20},
@@ -25,16 +25,117 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.json(dataSrc.rawData, function(error, json) {
-		if (error) {return console.warn(error);}
-		var dataset = [];
+	switch(outputType){
 
-		for (perDate in json) {
-			if (parseDate(perDate)!==null){
-				dataset.push({date:perDate, val:json[perDate][dataSrc.key1][dataSrc.key2]});
+		case "daily":
+			d3.json(dataSrc.rawData, function(error, json) {
+				if (error) {return console.warn(error);}
+				var dataset = [];
+
+				for (perDate in json) {
+					if (parseDate(perDate)!==null){
+						dataset.push({date:perDate, val:json[perDate][dataSrc.key1][dataSrc.key2]});
+					}
+				}
+				//convert string to respective datatype
+				genBarGraph(dataset)
+			});
+
+			break;
+
+		case "weekly":
+			//find 7 weeks of url
+			var sourceArray = [];
+			var daysBackArray = [0,7,14,21,28,35,42];
+			for (var j = 0; j < daysBackArray.length; j++){
+				sourceArray.push(dataSrc.rawData.slice(0,dataSrc.rawData.length-10) + convertDateStr(dataSrc.rawData,daysBackArray[j],0));
 			}
-		}
-		//convert string to respective datatype
+			//begin parsing json data
+			d3.json(sourceArray[0], function(error, json0) {
+				d3.json(sourceArray[1], function(error, json1) {
+					d3.json(sourceArray[2], function(error, json2) {
+						d3.json(sourceArray[3], function(error, json3) {
+							d3.json(sourceArray[4], function(error, json4) {
+								d3.json(sourceArray[5], function(error, json5) {
+									d3.json(sourceArray[6], function(error, json6) {
+										if (error) {return console.warn(error);}
+
+										var dataset = [];
+										var jsonArray = [json0,json1,json2,json3,json4,json5,json6];
+										for (var i = 0; i < jsonArray.length; i++){
+											var sumNew = 0;
+											for (perDate in jsonArray[i]) {
+												if (parseDate(perDate)!==null){
+													sumNew = sumNew + (+jsonArray[i][perDate][dataSrc.key1][dataSrc.key2]);
+													//console.log(jsonArray[i][perDate][dataSrc.key1][dataSrc.key2]);
+												}
+											}
+											//console.log(sumNew);
+											dataset.push({date:jsonArray[i]["report_date"], val:sumNew});
+											//console.log(dataset);
+										}
+										//convert string to respective datatype
+										genBarGraph(dataset)
+									});
+								});
+							});	
+						});	
+					});	
+				});
+			});
+			break;
+
+		case "monthly":
+			var sourceArray = [dataSrc.rawData];
+			//begin loop from 1, 0 will be current month
+			console.log(dataSrc.rawData);
+			console.log(convertDateStr(dataSrc.rawData,0,0));
+			console.log(convertDateStr(dataSrc.rawData,0,1));
+			console.log(convertDateStr(dataSrc.rawData,0,2));
+			for (var j = 1; j < 7; j++){
+				sourceArray.push(dataSrc.rawData.slice(0,dataSrc.rawData.length-10) + convertDateStr(dataSrc.rawData,0,j));
+			}
+
+			//begin parsing json data
+			d3.json(sourceArray[0], function(error, json0) {
+				d3.json(sourceArray[1], function(error, json1) {
+					d3.json(sourceArray[2], function(error, json2) {
+						d3.json(sourceArray[3], function(error, json3) {
+							d3.json(sourceArray[4], function(error, json4) {
+								d3.json(sourceArray[5], function(error, json5) {
+									d3.json(sourceArray[6], function(error, json6) {
+										if (error) {return console.warn(error);}
+
+										var dataset = [];
+										var jsonArray = [json0,json1,json2,json3,json4,json5,json6];
+										for (var i = 0; i < jsonArray.length; i++){
+											//for (perDate in jsonArray[i]) {
+
+											//	if (parseDate(perDate)!==null){
+											dataset.push({date:jsonArray[i]["report_date"], val:jsonArray[i][sourceArray[i].slice(-10)][dataSrc.key1][dataSrc.key2]});
+													//console.log(jsonArray[i][perDate][dataSrc.key1][dataSrc.key2]);
+											//	}
+											//}
+											//console.log(sumNew);
+											//dataset.push({date:jsonArray[i]["report_date"], val:sumNew});
+											//console.log(dataset);
+										}
+
+										//convert string to respective datatype
+										genBarGraph(dataset)
+									});
+								});
+							});	
+						});	
+					});	
+				});
+			});
+			break;
+
+	}
+
+	function genBarGraph(dataset){
+
 		dataset.forEach(function(d){
 
 			d.val = +d.val;
@@ -52,6 +153,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 			.data(dataset)
 			.enter()
 			.append("rect")
+				.attr("class","bar")
 				.attr("x", function(d,i){return xScale(d.date);})
 				.attr("y", function(d){return height;})
 				.attr("width", xScale.rangeBand())
@@ -80,7 +182,20 @@ function buildBarChart(dataSrc,id,xAxisFormat,yAxisRange){
 			.attr("class", "xBar axis")
 			.attr("transform", "translate(0," + (height-5) + ")")
 			.call(xAxis);
-	});
+	}
+
+	function convertDateStr(url, daysBack, monthsBack) {
+		if(typeof(daysBack)==="undefined") {daysBack=0;}
+		if(typeof(monthsBack)==="undefined") {monthsBack=0;}
+		var targetDate = parseDate(url.slice(-10));
+
+		targetDate.setDate(targetDate.getDate()-daysBack);
+		targetDate.setMonth(targetDate.getMonth()-monthsBack);
+
+		if (monthsBack!==0) {targetDate = new Date(targetDate.getFullYear(), targetDate.getMonth()+1,0);}
+
+		return targetDate.getFullYear() + "-" + ("0" + (targetDate.getMonth()+1)).slice(-2) + "-" + ("0" + targetDate.getDate()).slice(-2);
+	}
 }
 
 //buildBarChart({rawData:jsonYesterdayURL,key1:"4",key2:"TD"}, "#tw-daily","%a");

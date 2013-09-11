@@ -67,19 +67,27 @@ h1 {
 	text-align: center;
 }
 
+#yesterday-report {
+	color: #ff4500;
+	font-weight: bold;
+}
+
 /* Classes */
 .wrapper {
 	width: 960px;
 	margin: 0px auto;
 	/*background-color: #8e8e8e;*/
 }
-
+.title{
+	margin-bottom: 10px;
+}
 .section {
 	-webkit-flex-direction: row;
 	flex-direction:row;
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 	/*background-color: #ff6103;*/
 }
+
 
 .flex-sub{
 	/*background-color: #7171c6;*/
@@ -88,14 +96,24 @@ h1 {
 	margin: 1px;
 }
 
+.description {
+	margin-bottom: 20px;
+}
 
+.highlight {
+	color: #ff4500;
+}
+
+.full {
+	padding-right: 30%;
+}
 
 /* text classes */
 .align-right{
 	text-align: right;
 }
 .active {
-	color:#ffa500;
+	color:#ff4500;
 	font-size: 1.8em;
 	font-weight: bold;
 }
@@ -136,7 +154,7 @@ h1 {
 }
 
 .barAvg {
-	fill: #CDCD00;
+	fill: #8e8e8e;
 	fill-opacity: 1;
 }
 
@@ -177,8 +195,12 @@ h1 {
 }
 
 .xLine.axis path, .yLine.axis path,
-.xBar.axis path, .xBar.axis line, .bullet.axis path,
+.bullet.axis path,.xBar.axis line,
 .annual.xAxis path{
+	display: none;
+}
+
+.xBar.axis path {
 	display: none;
 }
 
@@ -196,8 +218,12 @@ h1 {
 
 .line.avg{
 	fill: none;
-	stroke: #eeee00;
-	stroke-dasharray: 5,5;
-	stroke-width: 2px;
-	stroke-opacity: .6;
+	stroke: #8e8e8e;
+	/*stroke-dasharray: 5,5;*/
+	stroke-width: .8px;
+	stroke-opacity: .8;
+}
+
+.rect.avg {
+	fill: #eaeaea;
 }

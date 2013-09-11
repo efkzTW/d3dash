@@ -56,10 +56,8 @@ function buildBullet(dataSrc, id, outputType) {
 				var sumTotal1 = 0, sumTotal2 = 0;
 				//loop through each date in the weekly report
 				dataset.forEach(function(d){
-					
-					//console.log(parseDate(d["date"]));
-					//console.log(parseDate(d["date"]).getUTCDay());
 
+					
 					if (parseDate(d["date"]).getUTCDay() <= maxDate) {
 						//console.log("true");
 						sumNew = sumNew + d["valNew"];
@@ -109,6 +107,8 @@ function buildBullet(dataSrc, id, outputType) {
 					.attr("y", 0)
 					.attr("width", 0)
 					.attr("height", height *.9)
+					.attr("rx",3)
+					.attr("ry",3)
 					.transition()
 					.delay(500)
 					.duration(1000)

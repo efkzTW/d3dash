@@ -149,7 +149,22 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 		yScale.domain([0,d3.max(dataset, function(d){return d.val;})]);
 		xScale.domain(dataset.map(function(d){return d.date;}));
 
-		canvas.selectAll("rect")
+		canvas.append("rect")
+			.attr("class", "rect avg")
+			.attr("x", 0)
+			.attr("y", height)
+			.attr("width",width)
+			.attr("height", 0)
+			//.style("fill-opacity","0")
+			.transition()
+			.delay(700)
+			.duration(3000)
+			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})))
+			.attr("height", height - yScale(d3.mean(dataset,function(d){return d.val;})));
+			//.style("fill-opacity","0.8");
+
+
+		canvas.selectAll("rects")
 			.data(dataset)
 			.enter()
 			.append("rect")
@@ -163,16 +178,20 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 				.duration(1000)
 				.attr("y", function(d){return yScale(d.val);})
 				.attr("height", function(d){return height-yScale(d.val);});
-		
+
 		canvas.append("line")
 			.attr("class", "line avg")
 			.attr("x1", 0)
 			.attr("y1", height)
+			//.attr("y1", yScale(d3.mean(dataset,function(d){return d.val;})))
 			.attr("x2", width)
 			.attr("y2", height)
+			//.attr("y2", yScale(d3.mean(dataset,function(d){return d.val;})))
+			//.style("stroke-opacity","0")
 			.transition()
 			.delay(700)
-			.duration(1000)
+			.duration(3000)
+			//.style("stroke-opacity",".8");
 			.attr("y1", yScale(d3.mean(dataset,function(d){return d.val;})))
 			.attr("y2", yScale(d3.mean(dataset,function(d){return d.val;})));
 
@@ -190,26 +209,33 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 				.text(function(d){return d.val;})
 				.attr("y", function(d){return (yScale(d.val)-2);});
 
-
+/*
 		canvas.append("text")
 			.attr("class", "text barAvg")
 			.text("Avg.")
 			.attr("x", -1)
-			.attr("y", height + 3)
+			//.attr("y", height + 3)
+			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3)
 			.style("text-anchor", "end")
+			.style("fill-opacity","0")
 			.transition()
 			.delay(700)
-			.duration(1000)
-			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3);
+			.duration(3000)
+			.style("fill-opacity","1");
+			//.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3);
+*/
 
 		canvas.append("text")
 			.attr("class", "text barAvg")
 			.text(Math.floor(d3.mean(dataset,function(d){return d.val;})))
 			.attr("x", width + 2)
 			.attr("y", height + 3)
+			//.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3)
+			//.style("fill-opacity","0")
 			.transition()
 			.delay(700)
-			.duration(1000)
+			.duration(3000)
+			//.style("fill-opacity","1");
 			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3);
 
 

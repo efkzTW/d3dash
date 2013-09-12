@@ -182,14 +182,14 @@ function buildLineGraph(dataSrc,id, outputType){
 
 		canvas.append("text")
 				.attr("class","lineText voucher")
-				.attr("x", xScale(dataArray[1][dataArray[1].length-1]["date"]))
-				.attr("y", yScale(dataArray[1][dataArray[1].length-1]["valSum"]))
+				.attr("x", xScale(dataArray[1][dataArray[1].length-1]["date"])+1)
+				.attr("y", yScale(dataArray[1][dataArray[1].length-1]["valSum"])+3)
 				.text("TaiEx");
 
 		canvas.append("text")
 				.attr("class","lineText voucher")
-				.attr("x", xScale(dataArray[0][dataArray[0].length-1]["date"]))
-				.attr("y", yScale(dataArray[0][dataArray[0].length-1]["valSum"]))
+				.attr("x", xScale(dataArray[0][dataArray[0].length-1]["date"])+1)
+				.attr("y", yScale(dataArray[0][dataArray[0].length-1]["valSum"])+3)
 				.text("Combo");
 	}
 		

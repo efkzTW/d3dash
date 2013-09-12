@@ -46,7 +46,9 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 		case "weekly":
 			//find 7 weeks of url
 			var sourceArray = [];
-			var daysBackArray = [0,7,14,21,28,35,42];
+			var k= parseDate(dataSrc.rawData.slice(-10)).getUTCDay() + 1;; //days from previous Sunday
+			var daysBackArray = [0,k,k+7,k+14,k+21,k+28,k+36];
+			//find previous sunday
 			for (var j = 0; j < daysBackArray.length; j++){
 				sourceArray.push(dataSrc.rawData.slice(0,dataSrc.rawData.length-10) + convertDateStr(dataSrc.rawData,daysBackArray[j],0));
 			}
@@ -64,8 +66,10 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 										var jsonArray = [json0,json1,json2,json3,json4,json5,json6];
 										for (var i = 0; i < jsonArray.length; i++){
 											var sumNew = 0;
+											var maxDate = parseDate(jsonArray[i]["report_date"]).getUTCDay();
+											//console.log(maxDate);
 											for (perDate in jsonArray[i]) {
-												if (parseDate(perDate)!==null){
+												if (parseDate(perDate)!==null && parseDate(perDate).getUTCDay() <= maxDate){
 													sumNew = sumNew + (+jsonArray[i][perDate][dataSrc.key1][dataSrc.key2]);
 													//console.log(jsonArray[i][perDate][dataSrc.key1][dataSrc.key2]);
 												}
@@ -88,10 +92,6 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 		case "monthly":
 			var sourceArray = [dataSrc.rawData];
 			//begin loop from 1, 0 will be current month
-			console.log(dataSrc.rawData);
-			console.log(convertDateStr(dataSrc.rawData,0,0));
-			console.log(convertDateStr(dataSrc.rawData,0,1));
-			console.log(convertDateStr(dataSrc.rawData,0,2));
 			for (var j = 1; j < 7; j++){
 				sourceArray.push(dataSrc.rawData.slice(0,dataSrc.rawData.length-10) + convertDateStr(dataSrc.rawData,0,j));
 			}
@@ -159,8 +159,8 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 			.transition()
 			.delay(700)
 			.duration(3000)
-			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})))
-			.attr("height", height - yScale(d3.mean(dataset,function(d){return d.val;})));
+			.attr("y", yScale(d3.mean(dataset.slice(0,dataset.length-1),function(d){return d.val;})))
+			.attr("height", height - yScale(d3.mean(dataset.slice(0,dataset.length-1),function(d){return d.val;})));
 			//.style("fill-opacity","0.8");
 
 
@@ -192,8 +192,8 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 			.delay(700)
 			.duration(3000)
 			//.style("stroke-opacity",".8");
-			.attr("y1", yScale(d3.mean(dataset,function(d){return d.val;})))
-			.attr("y2", yScale(d3.mean(dataset,function(d){return d.val;})));
+			.attr("y1", yScale(d3.mean(dataset.slice(0,dataset.length-1),function(d){return d.val;})))
+			.attr("y2", yScale(d3.mean(dataset.slice(0,dataset.length-1),function(d){return d.val;})));
 
 		canvas.selectAll("text")
 			.data(dataset)
@@ -227,7 +227,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 
 		canvas.append("text")
 			.attr("class", "text barAvg")
-			.text(Math.floor(d3.mean(dataset,function(d){return d.val;})))
+			.text(Math.floor(d3.mean(dataset.slice(0,dataset.length-1),function(d){return d.val;})))
 			.attr("x", width + 2)
 			.attr("y", height + 3)
 			//.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3)
@@ -236,7 +236,7 @@ function buildBarChart(dataSrc,id,xAxisFormat,outputType){
 			.delay(700)
 			.duration(3000)
 			//.style("fill-opacity","1");
-			.attr("y", yScale(d3.mean(dataset,function(d){return d.val;})) + 3);
+			.attr("y", yScale(d3.mean(dataset.slice(0,dataset.length-1),function(d){return d.val;})) + 3);
 
 
 		canvas.append("g")

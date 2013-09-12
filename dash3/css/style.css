@@ -98,6 +98,7 @@ h1 {
 
 .description {
 	margin-bottom: 20px;
+	color: #808080;
 }
 
 .highlight {
@@ -105,7 +106,7 @@ h1 {
 }
 
 .full {
-	padding-right: 30%;
+	padding-right: 33.33%;
 }
 
 /* text classes */

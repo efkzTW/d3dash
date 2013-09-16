@@ -195,10 +195,16 @@ h1 {
 	shape-rendering: crispEdges;
 }
 
-.xLine.axis path, .yLine.axis path,
+.xLine.axis path,
 .bullet.axis path,.xBar.axis line,
 .annual.xAxis path{
 	display: none;
+}
+
+.yLine.axis path {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
 
 .xBar.axis path {

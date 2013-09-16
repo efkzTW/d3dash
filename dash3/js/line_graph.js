@@ -1,6 +1,6 @@
 function buildLineGraph(dataSrc,id, outputType){
 
-	var fullWidth = 300, fullHeight= 100;
+	var fullWidth = 300, fullHeight= 150;
 	var margin = {top: 10, right: 35, bottom: 40, left: 25},
 		width = fullWidth - margin.left - margin.right,
 		height = fullHeight - margin.top - margin.bottom;

@@ -217,6 +217,12 @@ h1 {
 	stroke-width: 1.5px;
 }
 
+.line3{
+	fill: none;
+	stroke: #eeee00;
+	stroke-width: 1.5px;
+}
+
 .line.avg{
 	fill: none;
 	stroke: #8e8e8e;

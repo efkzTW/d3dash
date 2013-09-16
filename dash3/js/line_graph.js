@@ -1,7 +1,7 @@
 function buildLineGraph(dataSrc,id, outputType){
 
 	var fullWidth = 300, fullHeight= 150;
-	var margin = {top: 10, right: 35, bottom: 40, left: 25},
+	var margin = {top: 10, right: 40, bottom: 40, left: 25},
 		width = fullWidth - margin.left - margin.right,
 		height = fullHeight - margin.top - margin.bottom;
 
@@ -25,7 +25,7 @@ function buildLineGraph(dataSrc,id, outputType){
 
 	var line = d3.svg.line()
 			.x(function(d){return xScale(d.date);})
-			.y(function(d){return yScale(d.valSum);});
+			.y(function(d){return yScale(d.valTotal);});
 
 	var canvas = d3.select(id).append("svg")
 			.attr("width", fullWidth)
@@ -40,18 +40,17 @@ function buildLineGraph(dataSrc,id, outputType){
 			var sourceArray = [dataSrc.rawData];
 
 			d3.json(sourceArray[0], function(error, json) {
-				var v1 = [], v2 = [];
+				var v1 = [], v2 = [], v3 = [];
 				if (error) {return console.warn(error);}
 				for (perDate in json) {
 					if (parseDate(perDate) !== null) {
-						v1.push({date:perDate, valNew:json[perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key3], 
-								valRe:json[perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key4]});
-						v2.push({date:perDate, valNew:json[perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key3], 
-								valRe:json[perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key4]});
+						v1.push({date:perDate, valTotal:json[perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key3]});
+						v2.push({date:perDate, valTotal:json[perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key3]});
+						v3.push({date:perDate, valTotal:json[perDate][dataSrc.key1][dataSrc.key2[2]][dataSrc.key3]});
 					}
 				}
 				//generate graph
-				genGraph(v1,v2,1);
+				genGraph(v1,v2,v3,1);
 			});
 			break;
 
@@ -67,23 +66,22 @@ function buildLineGraph(dataSrc,id, outputType){
 			d3.json(sourceArray[0], function(error, json1) {
 				
 				d3.json(sourceArray[1], function(error, json2) {
-					var v1 = [], v2 = [];
+					var v1 = [], v2 = [], v3 = [];
 					if (error) {return console.warn(error);}
 
 					var jsonArray = [json1, json2];
 					for (var i = 0; i<jsonArray.length;i++) {
 						for (perDate in jsonArray[i]) {
 							if (parseDate(perDate) !== null) {
-								v1.push({date:perDate, valNew:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key3], 
-										valRe:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key4]});
-								v2.push({date:perDate, valNew:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key3], 
-										valRe:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key4]});
+								v1.push({date:perDate, valTotal:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key3]});
+								v2.push({date:perDate, valTotal:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key3]});
+								v3.push({date:perDate, valTotal:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[2]][dataSrc.key3]});
 							}
 						}
 					}
 
 				//generate graph
-				genGraph(v1,v2,1);
+				genGraph(v1,v2,v3,1);
 				
 				});
 			});
@@ -107,23 +105,22 @@ function buildLineGraph(dataSrc,id, outputType){
 			d3.json(sourceArray[0], function(error, json1) {
 				d3.json(sourceArray[1], function(error, json2) {
 					d3.json(sourceArray[2], function(error, json3) {
-						var v1 = [], v2 = [];
+						var v1 = [], v2 = [], v3 = [];
 						if (error) {return console.warn(error);}
 
 						var jsonArray = [json1, json2, json3];
 						for (var i = 0; i<jsonArray.length;i++) {
 							for (perDate in jsonArray[i]) {
 								if (parseDate(perDate) !== null) {
-									v1.push({date:perDate, valNew:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key3], 
-											valRe:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key4]});
-									v2.push({date:perDate, valNew:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key3], 
-											valRe:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key4]});
+									v1.push({date:perDate, valTotal:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[0]][dataSrc.key3]});
+									v2.push({date:perDate, valTotal:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[1]][dataSrc.key3]});
+									v3.push({date:perDate, valTotal:jsonArray[i][perDate][dataSrc.key1][dataSrc.key2[2]][dataSrc.key3]});
 								}
 							}
 						}
 
 					//generate graph
-					genGraph(v1,v2,2);
+					genGraph(v1,v2,v3,2);
 				
 					});
 				});
@@ -135,25 +132,23 @@ function buildLineGraph(dataSrc,id, outputType){
 	
 
 	//wrap graph generator after gather all data
-	function genGraph(v1_data, v2_data, tickCount) {
+	function genGraph(v1_data, v2_data, v3_data, tickCount) {
 
-		var dataArray = [v1_data, v2_data];
+		var dataArray = [v1_data, v2_data, v3_data];
 		//var dataArray = [v1_data, v2_data];
 
 		for (var i = 0; i<dataArray.length; i++){
 
 			dataArray[i].forEach(function(d){
 			d.date = parseDate(d.date);
-			d.valNew = +d.valNew;
-			d.valRe = +d.valRe;
-			d.valSum = +d.valNew + d.valRe;
+			d.valTotal = +d.valTotal;
 			return d;
 			});
 
 			dataArray[i].sort(function(a,b){return a.date-b.date;});
 		}
 
-		yScale.domain([0, d3.max([d3.max(dataArray[0], function(d){return d.valSum;}),d3.max(dataArray[1], function(d){return d.valSum;})])]);
+		yScale.domain([0, d3.max([d3.max(dataArray[0], function(d){return d.valTotal;}),d3.max(dataArray[1], function(d){return d.valTotal;})])]);
 		xScale.domain(d3.extent(dataArray[0], function(d){return d.date;}));
 		xAxis.ticks(d3.time.days, tickCount);
 		canvas.append("path")
@@ -164,6 +159,11 @@ function buildLineGraph(dataSrc,id, outputType){
 		canvas.append("path")
 			.datum(dataArray[1])
 			.attr("class", "line2")
+			.attr("d", line);
+
+		canvas.append("path")
+			.datum(dataArray[2])
+			.attr("class", "line3")
 			.attr("d", line);
 
 		canvas.append("g")
@@ -182,15 +182,21 @@ function buildLineGraph(dataSrc,id, outputType){
 
 		canvas.append("text")
 				.attr("class","lineText voucher")
-				.attr("x", xScale(dataArray[1][dataArray[1].length-1]["date"])+1)
-				.attr("y", yScale(dataArray[1][dataArray[1].length-1]["valSum"])+3)
+				.attr("x", xScale(dataArray[1][dataArray[1].length-1]["date"])+3)
+				.attr("y", yScale(dataArray[1][dataArray[1].length-1]["valTotal"])+3)
 				.text("TaiEx");
 
 		canvas.append("text")
 				.attr("class","lineText voucher")
-				.attr("x", xScale(dataArray[0][dataArray[0].length-1]["date"])+1)
-				.attr("y", yScale(dataArray[0][dataArray[0].length-1]["valSum"])+3)
+				.attr("x", xScale(dataArray[0][dataArray[0].length-1]["date"])+3)
+				.attr("y", yScale(dataArray[0][dataArray[0].length-1]["valTotal"])+3)
 				.text("Combo");
+
+		canvas.append("text")
+				.attr("class","lineText voucher")
+				.attr("x", xScale(dataArray[2][dataArray[2].length-1]["date"])+3)
+				.attr("y", yScale(dataArray[2][dataArray[2].length-1]["valTotal"])+3)
+				.text("Deluxe");
 	}
 		
 }

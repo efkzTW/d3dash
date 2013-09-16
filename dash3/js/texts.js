@@ -38,9 +38,9 @@
 	buildBarChart({rawData:jsonURL,key1:"4",key2:"TM"}, "#tw-monthly","%b","monthly");
 	buildBarChart({rawData:jsonURL,key1:"4",key2:"NM"}, "#ntb-monthly","%b","monthly");
 
-	buildLineGraph({rawData:[jsonURL],key1:"5",key2:["Combo", "TaiEx"],key3:"DN",key4:"DR"},"#trend-7","7days")
-	buildLineGraph({rawData:[jsonURL],key1:"5",key2:["Combo", "TaiEx"],key3:"DN",key4:"DR"},"#trend-14","14days")
-	buildLineGraph({rawData:[jsonURL],key1:"5",key2:["Combo", "TaiEx"],key3:"DN",key4:"DR"},"#trend-21","21days")
+	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-7","7days")
+	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-14","14days")
+	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-21","21days")
 }());
 
 

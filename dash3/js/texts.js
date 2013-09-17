@@ -18,6 +18,8 @@
 	var lastDate = yesterday.toJSON().slice(0,10);
 	var jsonURL = jsonBaseURL + lastDate;
 
+	console.log(jsonURL);
+
 	totalSubs(jsonURL,lastDate);
 	
 	buildBullet({rawData: jsonURL, key1: "5", key2: "Combo", key3: "DN", key4: "DR"}, "#d-bul-combo", "daily");
@@ -38,9 +40,17 @@
 	buildBarChart({rawData:jsonURL,key1:"4",key2:"TM"}, "#tw-monthly","%b","monthly");
 	buildBarChart({rawData:jsonURL,key1:"4",key2:"NM"}, "#ntb-monthly","%b","monthly");
 
-	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-7","7days")
-	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-14","14days")
-	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-21","21days")
+	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-7_total","7days")
+	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-14_total","14days")
+	buildLineGraph({rawData:[jsonURL],key1:"6",key2:["Combo", "TaiEx", "Deluxe"],key3:"Daily"},"#trend-21_total","21days")
+
+	buildLineGraph_NR({rawData:[jsonURL],key1:"5",key2:"TaiEx",key3:["DN", "DR"]},"#trend-7_new","7days")
+	buildLineGraph_NR({rawData:[jsonURL],key1:"5",key2:"TaiEx",key3:["DN", "DR"]},"#trend-14_new","14days")
+	buildLineGraph_NR({rawData:[jsonURL],key1:"5",key2:"TaiEx",key3:["DN", "DR"]},"#trend-21_new","21days")
+
+	buildLineGraph_NR({rawData:[jsonURL],key1:"5",key2:"Combo",key3:["DN", "DR"]},"#trend-7_renew","7days")
+	buildLineGraph_NR({rawData:[jsonURL],key1:"5",key2:"Combo",key3:["DN", "DR"]},"#trend-14_renew","14days")
+	buildLineGraph_NR({rawData:[jsonURL],key1:"5",key2:"Combo",key3:["DN", "DR"]},"#trend-21_renew","21days")
 }());
 
 

@@ -153,12 +153,12 @@ function buildLineGraph(dataSrc,id, outputType){
 		xAxis.ticks(d3.time.days, tickCount);
 		canvas.append("path")
 			.datum(dataArray[0])
-			.attr("class", "line1")
+			.attr("class", "line1 Combo")
 			.attr("d", line);
 
 		canvas.append("path")
 			.datum(dataArray[1])
-			.attr("class", "line2")
+			.attr("class", "line2 TaiEx")
 			.attr("d", line);
 
 		canvas.append("path")

@@ -138,7 +138,7 @@ h1 {
 
 .bullet-label {
 	font-weight: bold;
-	font-size: 1.2em;
+	font-size: 1.0em;
 }
 
 /* JS styles */
@@ -213,14 +213,27 @@ h1 {
 
 .line1{
 	fill: none;
-	stroke: #ff7100;
 	stroke-width: 1.5px;
 }
 
 .line2{
 	fill: none;
-	stroke: #009b95;
 	stroke-width: 1.5px;
+}
+
+.Combo {
+	stroke: #ff7100;
+}
+
+.TaiEx {
+	stroke: #009b95;
+}
+.new {
+	stroke-dasharray: 5,5;
+}
+
+.renew {
+	stroke-opacity: 0.7;
 }
 
 .line3{
